@@ -1,15 +1,24 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.5.5'
-    id 'io.spring.dependency-management' version '1.1.0'
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -19,8 +28,4 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     testImplementation 'com.h2database:h2'
     implementation 'junit:junit:4.13.1'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
